@@ -71,11 +71,11 @@ Lombok을 사용하면 Java 개발시 constructor, getter/setter, toStinrg()등�
 1. Lombok 사이트에서 `lombok.jar`을 다운로드 받는다. 
 2. lombok.jar을 클릭하여 설치를 진행한다.
 
-    <img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.08.png"  width="48%">
+    <img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.08.png"  width="75%">
 
 3. Eclipse가 설치된 경로에 lombok이 존재하는지 확인한다.
 
-    <img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.09.png"  width="48%">
+    <img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.09.png"  width="75%">
 
 ## 1.4. Java Configuration을 이용하는 경우
 Spring Verion 3 이후부터는 `Java Class File`을 이용하는 설정을 지원한다. 이를 위해 다음과 같은 작업을 수행해야한다.
@@ -84,8 +84,8 @@ Spring Verion 3 이후부터는 `Java Class File`을 이용하는 설정을 지�
 
 1. web.xml 파일 삭제 및 Spring 관련 파일 삭제
 
-    <img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.06.png"  width="48%">
-    
+    <img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.10.png"  width="48%">
+
 2. pom.xml 수정 및 Spring Version 변경
     [pom.xml 변경]
     `web.xml`을 사용하지 않기 때문에 아래와 같은 설정을 pom.xml에 추가해준다. web.xml이 없어도 동작하도록 하기위해 `failOnMissingWebXml` 설정이 필요하다.
