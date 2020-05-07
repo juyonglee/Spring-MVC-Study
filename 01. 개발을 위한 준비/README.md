@@ -18,7 +18,7 @@ Eclipse STS를 이용하여 프로젝트를 생성하는 방식은 아래와 같
 ```
 File > New > Spring Legacy Project
 ```
-Spring MCV에 관련한 학습을 진행하므로 `Spring MCV Project`를 선택하고 원하는 프로젝트명을 설정한뒤 Next를 클릭한다.
+Spring MVC에 관련한 학습을 진행하므로 `Spring MVC Project`를 선택하고 원하는 프로젝트명을 설정한뒤 Next를 클릭한다.
 
 프로젝트에 고유한 이름을 설정하기 위해 `package`를 설정한다.
 
@@ -26,5 +26,35 @@ Spring MCV에 관련한 학습을 진행하므로 `Spring MCV Project`를 선택
 `Spring Legacy Project`를 이용하여 생성된 Spring MVC는 아래 그림과 같은 구조를 가지며. 각 파일은 다음과 같은 역할을 수행한다.
 ![STS Setting](https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.06.png)
 
-<hr>
+#### Spring 및 Java Version 변경
+최신의 Spring 및 Java를 이용하기 위해 Maven이 사용하는 `pom.xml`파일을 이용한다.
 
+**[참조]** [Maven Repository](https://mvnrepository.com/artifact/org.springframework/spring-core)
+
+[Spring Version 변경]
+```xml
+<properties>
+	<java-version>1.6</java-version>
+	<org.springframework-version>5.2.6.RELEASE</org.springframework-version>
+	<org.aspectj-version>1.6.10</org.aspectj-version>
+	<org.slf4j-version>1.6.6</org.slf4j-version>
+</properties>
+```
+
+[Java Version 변경]
+
+```xml
+ <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>2.5.1</version>
+    <configuration>
+        <source>1.8</source>
+        <target>1.8</target>
+        <compilerArgument>-Xlint:all</compilerArgument>
+        <showWarnings>true</showWarnings>
+        <showDeprecation>true</showDeprecation>
+    </configuration>
+</plugin>
+```
+<hr>
