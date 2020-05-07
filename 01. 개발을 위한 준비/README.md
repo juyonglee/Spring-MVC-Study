@@ -13,6 +13,8 @@ Eclipse STS를 이용하여 프로젝트를 생성하는 방식은 아래와 같
 <img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.02.png"  width="70%">
 
 #### 스프링 프로젝트 생성
+**[참조]** [Example01](https://github.com/juyonglee/Spring-MVC-Study/tree/master/01.%20개발을%20위한%20준비/Example01_JAVA)
+
 `Spring Legacy Project` 메뉴를 이용하면 아래와 같이 여러 종류의 스프링 기반 프로젝트를 Maven 기반으로 생성할 수 있다.
 ```
 File > New > Spring Legacy Project
@@ -84,7 +86,7 @@ Spring Verion 3 이후부터는 `Java Class File`을 이용하는 설정을 지�
 
 1. web.xml 파일 삭제 및 Spring 관련 파일 삭제
 
-    <img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.10.png"  width="48%">
+    <img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.10.png"  width="90%">
 
 2. pom.xml 수정 및 Spring Version 변경
     [pom.xml 변경]
@@ -126,7 +128,7 @@ Spring Verion 3 이후부터는 `Java Class File`을 이용하는 설정을 지�
     ```
 3. Java 설정 관련 package 생성
 
-    xml 설정 파일을 삭제하였기 때문에 Java를 이용하여 설정을 해줘야한다. Spring에서는 **`@Configuration`** 이라는 Annotation을 이영해서 해당 Class의 Instance로 설정 파일을 대신한다.
+    xml 설정 파일을 삭제하였기 때문에 Java를 이용하여 설정을 해줘야한다. Spring에서는 **`@Configuration`** 이라는 Annotation을 이용해서 해당 Class의 Instance로 설정 파일을 대신한다.
     
     [**RootConfig.java**: root-context.xml을 대신하는 Class]
     ```java
