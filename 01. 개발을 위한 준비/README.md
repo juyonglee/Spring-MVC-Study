@@ -67,3 +67,10 @@ Lombok을 사용하면 Java 개발시 constructor, getter/setter, toStinrg()등�
 1. Lombok 사이트에서 `lombok.jar`을 다운로드 받는다. 
 2. lombok.jar을 클릭하여 설치를 진행한다.
 3. Eclipse가 설치된 경로에 lombok이 존재하는지 확인한다.
+
+## 1.4. Java Configuration을 이용하는 경우
+Spring Verion 3 이후부터는 `Java Class File`을 이용하는 설정을 지원한다. 이를 위해 다음과 같은 작업을 수행해야한다.
+**[참조]** [Example01_JAVA]()
+1. web.xml 파일 삭제 및 Spring 관련 파일 삭제
+2. pom.xml 수정 및 Spring Version 변경
+3. Java 설정 관련 package 생성
