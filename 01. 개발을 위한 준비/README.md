@@ -10,8 +10,7 @@ Eclipse STS를 이용하여 프로젝트를 생성하는 방식은 아래와 같
 
 ### 1.2.1. 예제 프로젝트 생성
 **[준비사항]** 프로젝트를 생성하기 위해 `Perspective`에서 Spring를 선택한다.
-
-![STS Setting](https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.02.png){: width="70%" height="70%"}
+<img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.02.png"  width="70%">
 
 #### 스프링 프로젝트 생성
 `Spring Legacy Project` 메뉴를 이용하면 아래와 같이 여러 종류의 스프링 기반 프로젝트를 Maven 기반으로 생성할 수 있다.
