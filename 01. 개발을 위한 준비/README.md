@@ -13,7 +13,7 @@ Eclipse STS를 이용하여 프로젝트를 생성하는 방식은 아래와 같
 <img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.02.png"  width="70%">
 
 #### 스프링 프로젝트 생성
-**[참조]** [Example01](https://github.com/juyonglee/Spring-MVC-Study/tree/master/01.%20개발을%20위한%20준비/Example01_JAVA)
+**[참조]** [Example01_XML](https://github.com/juyonglee/Spring-MVC-Study/tree/master/01.%20개발을%20위한%20준비/Example01_XML)
 
 `Spring Legacy Project` 메뉴를 이용하면 아래와 같이 여러 종류의 스프링 기반 프로젝트를 Maven 기반으로 생성할 수 있다.
 ```
@@ -78,6 +78,8 @@ Lombok을 사용하면 Java 개발시 constructor, getter/setter, toStinrg()등�
 3. Eclipse가 설치된 경로에 lombok이 존재하는지 확인한다.
 
     <img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.09.png"  width="75%">
+
+<hr>
 
 ## 1.4. Java Configuration을 이용하는 경우
 Spring Verion 3 이후부터는 `Java Class File`을 이용하는 설정을 지원한다. 이를 위해 다음과 같은 작업을 수행해야한다.
