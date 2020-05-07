@@ -23,7 +23,7 @@ Spring MVC에 관련한 학습을 진행하므로 `Spring MVC Project`를 선택
 
 #### 프로젝트 구조 살펴보기
 `Spring Legacy Project`를 이용하여 생성된 Spring MVC는 아래 그림과 같은 구조를 가지며. 각 파일은 다음과 같은 역할을 수행한다.
-![STS Setting](https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.06.png)
+<img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.06.png"  width="48%">
 
 #### Spring 및 Java Version 변경
 최신의 Spring 및 Java를 이용하기 위해 Maven이 사용하는 `pom.xml`파일을 이용한다.
