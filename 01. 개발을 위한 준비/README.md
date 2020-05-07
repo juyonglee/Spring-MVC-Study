@@ -10,7 +10,10 @@ Eclipse STS를 이용하여 프로젝트를 생성하는 방식은 아래와 같
 
 ### 1.2.1. 예제 프로젝트 생성
 프로젝트를 생성하기 위해 `Perspective`에서 Spring를 선택한다.
-![STS Setting]("https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.01.png")
-![STS Setting]("https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.01.png")
+
+![STS Setting](https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.01.png)
+
+![STS Setting](https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.01.png)
+
 <hr>
 
