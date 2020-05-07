@@ -70,7 +70,88 @@ Lombok을 사용하면 Java 개발시 constructor, getter/setter, toStinrg()등�
 
 ## 1.4. Java Configuration을 이용하는 경우
 Spring Verion 3 이후부터는 `Java Class File`을 이용하는 설정을 지원한다. 이를 위해 다음과 같은 작업을 수행해야한다.
-**[참조]** [Example01_JAVA]()
+
+**[참조]** [Example01_JAVA](https://github.com/juyonglee/Spring-MVC-Study/tree/master/01.%20개발을%20위한%20준비/Example01_JAVA)
+
 1. web.xml 파일 삭제 및 Spring 관련 파일 삭제
 2. pom.xml 수정 및 Spring Version 변경
+    [pom.xml 변경]
+    `web.xml`을 사용하지 않기 때문에 아래와 같은 설정을 pom.xml에 추가해준다. web.xml이 없어도 동작하도록 하기위해 `failOnMissingWebXml` 설정이 필요하다.
+    ```xml
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.3</version>
+        <configuration>
+            <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+    </plugin>
+    ```
+
+    [Java Version 변경]
+    ```xml
+    <properties>
+        <java-version>1.8</java-version>
+        <org.springframework-version>5.2.6.RELEASE</org.springframework-version>
+        <org.aspectj-version>1.6.10</org.aspectj-version>
+        <org.slf4j-version>1.6.6</org.slf4j-version>
+    </properties>
+                    .
+                    .
+                    .
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.5.1</version>
+        <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+            <compilerArgument>-Xlint:all</compilerArgument>
+            <showWarnings>true</showWarnings>
+            <showDeprecation>true</showDeprecation>
+        </configuration>
+    </plugin>
+    ```
 3. Java 설정 관련 package 생성
+
+    xml 설정 파일을 삭제하였기 때문에 Java를 이용하여 설정을 해줘야한다. Spring에서는 **`@Configuration`** 이라는 Annotation을 이영해서 해당 Class의 Instance로 설정 파일을 대신한다.
+    
+    [**RootConfig.java**: root-context.xml을 대신하는 Class]
+    ```java
+    package com.gmail.juyonglee0208;
+
+    import org.springframework.context.annotation.Configuration;
+
+    @Configuration
+    public class RootConfig {
+	
+    }
+    ```
+    [**WebConfig.java**: web.xml을 대신하는 Class]
+    추상 클래스 `AbstractAnnotationConfigDispatcherServletInitializer`를 상속받아 구현
+    ```java
+    package com.gmail.juyonglee0208;
+    import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+    public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+        @Override
+        protected Class<?>[] getRootConfigClasses() {
+            // TODO Auto-generated method stub
+            return new Class[] {RootConfig.class};
+        }
+
+        @Override
+        protected Class<?>[] getServletConfigClasses() {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        protected String[] getServletMappings() {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+    }
+    ```
