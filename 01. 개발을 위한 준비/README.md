@@ -13,7 +13,7 @@ Eclipse STS를 이용하여 프로젝트를 생성하는 방식은 아래와 같
 
 ![STS Setting](https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.01.png)
 
-![STS Setting](https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.01.png)
+![STS Setting](https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/1.2.1.02.png)
 
 <hr>
 
