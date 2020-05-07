@@ -58,3 +58,12 @@ Spring MVC에 관련한 학습을 진행하므로 `Spring MVC Project`를 선택
 </plugin>
 ```
 <hr>
+
+## 1.3. Lombok Libray 설치
+Lombok을 사용하면 Java 개발시 constructor, getter/setter, toStinrg()등을 자동으로 생성해주므로 편리하게 개발이 가능하다. Lombok은 다른 jar 파일들과 달리 특정 프로젝트에서만 사용되는 것이 아니기 때문에 별도로 설치가 필요하다.
+
+**[참조]** [Lombok](https://projectlombok.org)
+
+1. Lombok 사이트에서 `lombok.jar`을 다운로드 받는다. 
+2. lombok.jar을 클릭하여 설치를 진행한다.
+3. Eclipse가 설치된 경로에 lombok이 존재하는지 확인한다.
