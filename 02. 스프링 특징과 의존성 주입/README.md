@@ -119,7 +119,7 @@ Framework 장점은 개발에 필요한 구조를 이미 코드로 만들어 놓
     4. Restaurant 객체는 Chef 객체가 필요하다는 `@Autowired` Annotation이 있으므로, 스프링은 Chef 객체의 Reference를 Restaurant 객체에 주입한다. 
 
 6. 테스트 코드를 통한 동작 확인
-
+    #### **[XML을 이용하는 경우]**
     `src/test/java` 폴더 내에 SampleTests Class를 추가한다.
     spring-test 모듈을 이용해서 스프링의 동작을 살펴본다.
     
@@ -172,3 +172,73 @@ Framework 장점은 개발에 필요한 구조를 이미 코드로 만들어 놓
 - **@Test**: JUnit에서 테스트 대상을 표시하는 Annotation이다.
 
 **[중요]** Spring은 관리가 필요한 객체 (Bean)를 Annotation 등을 이용해서 객체를 생성하고 관리하는 일종의 `컨테이너`나 `팩토리`기능을 가지고 있다.
+
+#### **[Java를 이용하는 경우]**
+
+**`[RootConfig Class]`**
+```java
+package com.gmail.juyonglee0208;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+//  root-context.xml을 대체하는 Class 설정
+@ComponentScan(basePackages = {"com.gmail.juyonglee0208"})
+public class RootConfig {
+
+}
+```
+
+**`[SampleTests Class]`**
+```java
+package com.gmail.juyonglee0208;
+
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+//  변경된 부분
+@ContextConfiguration(classes = {RootConfig.class})
+@Log4j
+public class SampleTests {
+	@Setter(onMethod_ = @Autowired)
+	private Restaurant restaurant;
+	@Test
+	public void testExist() {
+		assertNotNull(restaurant);
+		log.info(restaurant);
+		log.info("----------------------------------");
+		log.info(restaurant.getChef());
+	}
+}
+```
+
+### Annotation
+1. Lombok 관련
+    - @Data
+    - @Setter
+        - value: 접근 제한 속성 (lombok.AccessLevel.PUBLIC)
+        - onMethod: setter 메서드 생성시 메서드에 추가할 Annotation 지정
+    - @Getter
+    - @ToString
+    - @EqualsAndHashCode
+    - @RequiredArgsConstructor
+    - `@Log4j`
+
+2. Spring 관련
+    - @Autowired: 해당 타입의 bean을 주입해달라는 표시
+    - @Component: 스프링에서 객체로 만들어서 관리하는 대상임을 명시
+
+3. Test 관련
+    - @Runwith: 테스트시 필요한 class를 지정한다.
+    - `ContextConfiguration`: 어떤 설정 정보를 읽어 들여야 하는지를 명시한다.
+    - @Test: jUnit에게 단위 테스트 대상인지 알려준다.
