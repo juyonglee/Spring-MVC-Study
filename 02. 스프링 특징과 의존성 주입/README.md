@@ -103,11 +103,16 @@ Framework와 Library의 차이는 제어 흐름에 대한 주도성이 누구에
 
     - 프로젝트 src 폴더 내에 `root-context.xml`은 스프링 프레임워크에서 관리해야 하는 객체 (Bean)를 설정하는 설정 파일입니다.
     - root-context.xml의 아래쪽에 NameSpaces라는 탭에 `context`항목을 체크한다.
+    
+        <img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/2.1.1.01.png"  width="70%">
+    
     - root-context.xml에 아래의 코드를 추가한다. 
         ```xml
         <context:component-scan base-package="com.gmail.juyonglee0208"></context:component-scan>
         ```
     - `Bean Graph`를 선택하여 Restaurant와 Chef 객체가 생성된 것을 확인한다.
+    
+        <img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/2.1.1.02.png"  width="70%">
 
     ### **[동작 Overview]**
     1. 스프링 프레임워크가 시작되면 스프링이 사용하는 메모리 영역인 `ApplicationContext`객체가 만들어진다.
