@@ -35,4 +35,140 @@ Framework 장점은 개발에 필요한 구조를 이미 코드로 만들어 놓
     - AOP (Aspect Oriented Programming)은 이러한 cross-concern을 모듈로 분리하는 프로그래밍 패러다임이다.
     - 비즈니스 로직에만 집중해서 개발을 할 수 있으며, 각 프로젝트마다 코드의 수정 최소화 및 유지보수가 수월한 코드를 구성할 수 있다.
 4. Transaction 지원
-트랜잭션의 관리를 `Annotation`이나 `XML`로 설정할 수 있기 때문에 개발자가 매번 상황에 맞는 코드를 작성할 필요가 없다.
+
+    트랜잭션의 관리를 `Annotation`이나 `XML`로 설정할 수 있기 때문에 개발자가 매번 상황에 맞는 코드를 작성할 필요가 없다.
+
+## 2.2. 의존성 주입 테스트
+스프링에서는 의존성 주입을 위한 크게 2가지의 방법이 있다.
+1. 생성자를 이용한 주입
+2. Setter를 이용한 주입
+
+### 의존성 주입 테스트
+1. Lombok 라이브러리 추가
+
+    **[참조]** ~[Lombok](https://mvnrepository.com/artifact/org.projectlombok/lombok)
+    ```xml
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.12</version>
+        <scope>provided</scope>
+    </dependency>
+    ```
+2. log4j 라이브러리 추가
+    ```xml
+    <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+     <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.12</version>
+        <scope>provided</scope>
+    </dependency>
+    ```
+2. Chef Class 작성
+    ```java
+    package com.gmail.juyonglee0208;
+
+    import org.springframework.stereotype.Component;
+
+    import lombok.Data;
+
+    @Data
+    @Component
+    public class Chef {
+
+    }
+    ```
+    **`@Data`** Annotation
+    생성자, toString(), setter를 생성하는 기능
+
+
+3. Restraunt Class 생성
+    ```java
+    package com.gmail.juyonglee0208;
+
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.stereotype.Component;
+
+    import lombok.Data;
+    import lombok.Setter;
+
+    @Data
+    @Component
+    public class Restaurant {
+        @Setter(onMethod_ = @Autowired)
+        private Chef chef;
+    }
+    ```
+
+4. 의존성 주입 설정
+
+    - 프로젝트 src 폴더 내에 `root-context.xml`은 스프링 프레임워크에서 관리해야 하는 객체 (Bean)를 설정하는 설정 파일입니다.
+    - root-context.xml의 아래쪽에 NameSpaces라는 탭에 `context`항목을 체크한다.
+    - root-context.xml에 아래의 코드를 추가한다. 
+        ```xml
+        <context:component-scan base-package="com.gmail.juyonglee0208"></context:component-scan>
+        ```
+    - `Bean Graph`를 선택하여 Restaurant와 Chef 객체가 생성된 것을 확인한다.
+
+    [동작 Overview]
+    1. 스프링 프레임워크가 시작되면 스프링이 사용하는 메모리 영역인 `ApplicationContext`객체가 만들어진다.
+    2. 스프링이 관리해야 하는 객체들을 설정하기 위해 `root-context.xml`을 이용한다.
+    3. root-context.xml에 설정되어 있는 `<context:component-scan>`태그의 내용을 통해서 `com.gmail.juyonglee0208` 패키지를 스캔합니다.
+    4. Restaurant 객체는 Chef 객체가 필요하다는 `@Autowired` Annotation이 있으므로, 스프링은 Chef 객체의 Reference를 Restaurant 객체에 주입한다. 
+
+6. 테스트 코드를 통한 동작 확인
+
+    `src/test/java` 폴더 내에 SampleTests Class를 추가한다.
+    spring-test 모듈을 이용해서 스프링의 동작을 살펴본다.
+    
+    [참고] !(spring-test)[https://mvnrepository.com/artifact/org.springframework/spring-test/5.2.6.RELEASE]
+    
+    ```xml
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>5.2.6.RELEASE</version>
+        <scope>test</scope>
+    </dependency>
+    ```
+    **`[SampleTests Class]`**
+    ```java
+    package com.gmail.juyonglee0208;
+
+    import static org.junit.Assert.assertNotNull;
+
+    import org.junit.Test;
+    import org.junit.runner.RunWith;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.test.context.ContextConfiguration;
+    import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+    import lombok.Setter;
+    import lombok.extern.log4j.Log4j;
+
+    @RunWith(SpringJUnit4ClassRunner.class)
+    @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+    @Log4j
+    public class SampleTests {
+        @Setter(onMethod_ = @Autowired)
+        private Restaurant restaurant;
+        
+        @Test
+        public void testExist() {
+            assertNotNull(restaurant);
+            log.info(restaurant);
+            log.info("---------------------------------");
+            log.info(restaurant.getChef());
+        }
+    }
+    ```
+    
+- **@Runwith**: 현재 테스트 코드가 스프링을 실행하는 역할을 할 것이라는 의미이다.
+- **@ContextConfiguration**: `classpath:`나 `file:`을 이용할 수 있다.
+- **@Autowired**: 스프링으로부터 자동으로 주입해 달라는 표시이다.
+- **@Test**: JUnit에서 테스트 대상을 표시하는 Annotation이다.
+
+**[중요]** Spring은 관리가 필요한 객체 (Bean)를 Annotation 등을 이용해서 객체를 생성하고 관리하는 일종의 `컨테이너`나 `팩토리`기능을 가지고 있다.
