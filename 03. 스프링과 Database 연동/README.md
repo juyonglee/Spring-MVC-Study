@@ -35,6 +35,8 @@ docker run -d -p 1521:1521 -e ORACLE_ENABLE_XDB=true wnameless/oracle-xe-11g-r2
 - password: oracle
 - Password for SYS & SYSTEM: oracle
 
+<hr>
+
 ### 3.1.1. SQL Developer 설치 및 설정
 Oracle Database를 쉽게 이용하기 위해 SQL Developer를 이용힌다.
 
@@ -42,11 +44,31 @@ Oracle Database를 쉽게 이용하기 위해 SQL Developer를 이용힌다.
 
 설치 후 Oracle Database 사용을 위해 위의 기본 설정대로 입력하고 연결을 수행한다.
 
-<img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/2.1.1.01.png"  width="70%">
+<img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/3.1.1.01.png"  width="70%">
+
+#### [Step01] 사용자 생성
 
 실습을 수행하기 위해 실습용 계정을 생성한다. 이를 위해 SQL Developer의 질의 창에 아래와 같은 SQL문을 입력하고 실행한다.
 
 ```sql
-// CREATE USER {user_id} IDENTIFIED BY {user_passwd}
-CREATE USER 'book_ex' IDENTIFIED BY 1234
+-- CREATE USER {user_id} IDENTIFIED BY {user_passwd}
+CREATE USER book_ex IDENTIFIED BY 1234
+DEFAULT TABLESPACE USERS
+TEMPORARY TABLESPACE TEMP;
 ```
+
+<img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/3.1.1.02.png"  width="70%">
+
+#### [Step02] 사용자 권한부여
+사용자 계정으로 Dabase를 사용하기 위해서는 권한이나 Role이 필요하다. 이를 위해 `GRANT` 구문을 이용한다. 
+```sql
+-- 연결 (CONNECT)과 Database Administration (DBA) 권한을 부여
+GRANT CONNECT, DBA TO book_ex;
+```
+
+<img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/3.1.1.03.png"  width="70%">
+
+#### [Step03] 연결수립 확인
+새로운 계정의 연결을 확인하기 위해 새롭게 연결을 시도한다.
+
+<img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/3.1.1.04.png"  width="70%">
