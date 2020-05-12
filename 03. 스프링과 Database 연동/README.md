@@ -72,3 +72,20 @@ GRANT CONNECT, DBA TO book_ex;
 새로운 계정의 연결을 확인하기 위해 새롭게 연결을 시도한다.
 
 <img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/3.1.1.04.png"  width="70%">
+
+<hr>
+
+### 3.1.2. JDBC와의 연결
+**`[주의]`** SQL Developer들의 프로그램을 이용하여 Database 연결에 문제가 없는것을 확인하고 Spring 프로젝트와 연결을 진행햐야한다.
+
+#### [Case01] JDBC Driver 추가하기
+사용하는 Oracle Database 11g의 JDBC Driver는 maven을 통해 이용이 불가능 하기 때문에 직접 `jar` 파일을 프로젝트에 추가시켜야한다. 
+
+```
+[jdbc 설치 경로]
+/Applications/SQLDeveloper.app/Contents/Resources/sqldeveloper/jdbc/lib
+```
+<img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/3.1.2.01.png"  width="70%">
+
+#### [Case02] JDBC Driver를 다운받는 경우
+[Oracle JDBC Driver Download](https://www.oracle.com/database/technologies/jdbcdriver-ucp-downloads.html)
