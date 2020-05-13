@@ -205,3 +205,75 @@ public void connectionPoolTest() {
 	}	
 }
 ```
+
+#### [Case02] JAVA를 이용하는 경우
+##### [Step02] HikariCP 속성 추가
+RootConfig.java에 속성 추가해준다.
+```java
+package com.gmail.juyonglee0208;
+
+import javax.sql.DataSource;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
+@Component
+@ComponentScan(basePackages = "com.gmail.juyonglee0208")
+public class RootConfig {
+	@Bean
+	public DataSource getDataSource() {
+		HikariConfig config = new HikariConfig();
+		config.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:XE");
+		config.setUsername("juyonglee");
+		config.setPassword("1234");
+		HikariDataSource dataSource = new HikariDataSource(config);
+		return dataSource;
+	}
+}
+```
+
+##### [Step03] Connection Pool Test 작성
+```java
+package com.gmail.juyonglee0208;
+
+import static org.junit.Assert.assertNotNull;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {RootConfig.class})
+@Log4j
+public class DatabaseConnectionTest {
+	
+	@Setter(onMethod_ = @Autowired)
+	private DataSource dataSource;
+	
+	@Test
+	public void connectionPoolTest() {
+		try {
+			assertNotNull(dataSource);
+			Connection connection =  dataSource.getConnection();
+			log.info(connection);
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+		}
+	}
+	
+}
+```
