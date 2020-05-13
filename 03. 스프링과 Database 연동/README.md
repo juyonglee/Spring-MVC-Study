@@ -151,3 +151,41 @@ public class DatabaseTest {
 	}
 }
 ```
+
+<hr>
+
+### 3.1.3. Connection Pool 설정
+- 여러 명의 사용자를 동시에 처리해야 하는 데이터베스 연결을 이용하는 경우 **`Connection Pool`** 을 이용한다.
+- Java에서는 **`DataSource`** 라는 인터페이스를 통해서 Connection Pool을 사용한다.
+
+
+#### [Step01] HikariCP 추가
+pom.xml에 HikariCP를 추가해준다.
+
+**[참고]** [HikariCP](https://mvnrepository.com/artifact/com.zaxxer/HikariCP/3.4.5)
+```xml
+<!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+<dependency>
+    <groupId>com.zaxxer</groupId>
+    <artifactId>HikariCP</artifactId>
+    <version>3.4.5</version>
+</dependency>
+```
+
+#### [Step01] HikariCP 추가
+root-context.xml에 속성 추가해준다.
+
+**[참고]** [HikariCP](https://github.com/brettwooldridge/HikariCP)
+```xml
+<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"></property>
+		<property name="username" value="juyonglee"></property>
+		<property name="password" value="1234"></property>
+	</bean>	
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+		<constructor-arg ref="hikariConfig"></constructor-arg>
+	</bean>
+	
+	<context:component-scan base-package="com.gmail.juyonglee0208"></context:component-scan>
+```
