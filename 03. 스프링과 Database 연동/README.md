@@ -89,3 +89,57 @@ GRANT CONNECT, DBA TO book_ex;
 
 #### [Case02] JDBC Driver를 다운받는 경우
 [Oracle JDBC Driver Download](https://www.oracle.com/database/technologies/jdbcdriver-ucp-downloads.html)
+
+#### [JDBC 설정]
+JDBC Driver를 추가하기 위해 Build Path를 이용한다.
+```
+Build Path > Configure Build Path... > Library > Add external JARs... >
+```
+
+war 파일로 만들어 질 때에도 jar 파일이 포함될 수 있도록 `Web Deployment Assembly`항목에도 jar 파일을 추가해야한다.
+```
+Web Deployment Assembly > Add > Java Build Path Entries
+```
+
+<hr>
+
+### 3.1.3. JDBC 테스트
+Connection 객체를 얻기위해 `DriverManager`를 이용한다.
+- **Driver**: oracle.jdbc.driver.OracleDriver
+- **Database Url**: jdbc:oracle:thin:@localhost:1521:XE
+
+```java
+package com.gmail.juyonglee0208;
+
+import static org.junit.Assert.fail;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import org.junit.Test;
+
+import lombok.extern.log4j.Log4j;
+
+@Log4j
+public class DatabaseTest {
+
+	static {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void databaseTestConnection() {
+		try {
+			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "juyonglee", "1234");
+			log.info(con);
+		} catch (SQLException e) {
+			fail(e.getMessage());
+		}
+	}
+}
+```
