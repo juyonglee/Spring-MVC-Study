@@ -159,7 +159,7 @@ public class DatabaseTest {
 - Java에서는 **`DataSource`** 라는 인터페이스를 통해서 Connection Pool을 사용한다.
 
 
-#### [Step01] HikariCP 추가
+#### HikariCP 추가
 pom.xml에 HikariCP를 추가해준다.
 
 **[참고]** [HikariCP](https://mvnrepository.com/artifact/com.zaxxer/HikariCP/3.4.5)
@@ -171,11 +171,11 @@ pom.xml에 HikariCP를 추가해준다.
     <version>3.4.5</version>
 </dependency>
 ```
-
-#### [Step01] HikariCP 추가
+#### [Case01] XML을 이용하는 경우
+##### [Step02] HikariCP 속성 추가
 root-context.xml에 속성 추가해준다.
 
-**[참고]** [HikariCP](https://github.com/brettwooldridge/HikariCP)
+**[참고]** [HikariCP Configuration](https://github.com/brettwooldridge/HikariCP)
 ```xml
 <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
@@ -188,4 +188,20 @@ root-context.xml에 속성 추가해준다.
 	</bean>
 	
 	<context:component-scan base-package="com.gmail.juyonglee0208"></context:component-scan>
+```
+
+##### [Step03] Connection Pool Test 작성
+```java
+@Test
+public void connectionPoolTest() {
+    try {
+		Connection connection = datasource.getConnection();
+		log.info("-----------------------");
+		log.info("[Connection Pool Test]");
+		log.info(connection);
+		log.info("-----------------------");
+	} catch (SQLException e) {
+		fail(e.getMessage());
+	}	
+}
 ```
