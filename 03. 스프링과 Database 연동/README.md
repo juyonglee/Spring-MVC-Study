@@ -103,6 +103,11 @@ war 파일로 만들어 질 때에도 jar 파일이 포함될 수 있도록 `Web
 ```
 Web Deployment Assembly > Add > Java Build Path Entries
 ```
+<img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/3.1.2.05.png"  width="70%">
+<br>
+<img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/3.1.2.06.png"  width="70%">
+<br>
+<img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/3.1.2.07.png"  width="70%">
 
 <hr>
 
