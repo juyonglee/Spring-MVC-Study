@@ -95,6 +95,9 @@ JDBC Driver를 추가하기 위해 Build Path를 이용한다.
 ```
 Build Path > Configure Build Path... > Library > Add external JARs... >
 ```
+<img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/3.1.2.02.png"  width="70%">
+<br>
+<img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/3.1.2.03.png"  width="70%">
 
 war 파일로 만들어 질 때에도 jar 파일이 포함될 수 있도록 `Web Deployment Assembly`항목에도 jar 파일을 추가해야한다.
 ```
