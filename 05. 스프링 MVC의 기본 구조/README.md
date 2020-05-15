@@ -6,6 +6,6 @@ Spring MVC는 Spring의 **`Sub-Project`** 이다. 스프링은 하나의 기능�
 - **root-context.xml**: Spring Core에 관련된 설정
 - **servlet-context.xml**: Spring MCV애 관련된 설정
 
-<img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/5.1.0.01.png"  width="70%">
+<img src="https://github.com/juyonglee/Spring-MVC-Study/blob/master/Images/5.1.0.01.png"  width="30%">
 
 <hr>
