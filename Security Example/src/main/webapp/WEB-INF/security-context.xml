@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<security:http>
+		
+		<security:intercept-url pattern="/sample/all" method="GET" access="permitAll"/>
+		
+		<security:intercept-url pattern="/sample/member" method="GET" access="hasRole('ROLE_MEMBER')"/>
+		
+		<security:intercept-url pattern="/sample/admin" method="GET" access="hasRole('ROLE_ADMIN')"/>
+		<security:form-login/>
+		
+		<security:access-denied-handler error-page="/"/>
+		
+	</security:http>
+	
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="member" password="{noop}0000" authorities="ROLE_MEMBER"/>
+				<security:user name="juyonglee0208" password="{noop}0000" authorities="ROLE_MEMBER, ROLE_ADMIN"/>
+			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager>
+</beans>
